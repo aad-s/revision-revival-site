@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#103b35" />
+  <meta name="description" content="Revision Revival is an Australian movement strengthening Qur’an memorisation, elevating homegrown huffadh, and gathering communities around a complete Qur’an khatmah." />
+  <title>Revision Revival — Qur’an Revision, Reawakened</title>
+
+  <!-- Self-contained brand favicon: an eight-pointed star inspired by the movement's mark. -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23103b35'/%3E%3Cpath d='M32 8l6.5 12.1L52 12l-8.1 13.5L56 32l-12.1 6.5L52 52l-13.5-8.1L32 56l-6.5-12.1L12 52l8.1-13.5L8 32l12.1-6.5L12 12l13.5 8.1z' fill='%23d4ad5c'/%3E%3Ccircle cx='32' cy='32' r='8' fill='%23d8f1eb'/%3E%3C/svg%3E" />
+
+  <!-- Tailwind CDN keeps this site build-free and easy to maintain. -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: '#112f2b',
+            forest: '#103b35',
+            evergreen: '#174f46',
+            mint: '#d8f1eb',
+            mist: '#edf8f5',
+            parchment: '#fbfaf5',
+            gold: '#d4ad5c',
+            'gold-pale': '#f3e5bd'
+          },
+          fontFamily: {
+            sans: ['Manrope', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            display: ['Cormorant Garamond', 'Georgia', 'serif']
+          },
+          boxShadow: {
+            soft: '0 24px 70px rgba(16, 59, 53, 0.10)',
+            card: '0 14px 45px rgba(17, 47, 43, 0.08)'
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ---------------------------------------------------------------------
+       GLOBAL DESIGN TOKENS + ACCESSIBILITY
+       ------------------------------------------------------------------ */
+    :root { color-scheme: light; }
+
+    body {
+      background: #fbfaf5;
+      color: #112f2b;
+      text-rendering: optimizeLegibility;
+    }
+
+    ::selection {
+      background: #d4ad5c;
+      color: #103b35;
+    }
+
+    :focus-visible {
+      outline: 3px solid #d4ad5c;
+      outline-offset: 4px;
+    }
+
+    [id] {
+      scroll-margin-top: 6rem;
+    }
+
+    /* Quiet paper grain gives the page depth without relying on image assets. */
+    .paper-grain {
+      background-image:
+        radial-gradient(circle at 18% 14%, rgba(216, 241, 235, .72), transparent 28rem),
+        radial-gradient(circle at 88% 36%, rgba(212, 173, 92, .10), transparent 22rem);
+    }
+
+    /* The brand motif is decorative and remains crisp at any screen size. */
+    .brand-star {
+      filter: drop-shadow(0 12px 22px rgba(10, 38, 34, .16));
+    }
+
+    .hero-grid {
+      background-image:
+        linear-gradient(rgba(216, 241, 235, .08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(216, 241, 235, .08) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(to bottom, black, transparent 92%);
+    }
+
+    /* Shared motion utilities. */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .nav-link::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      margin-top: 3px;
+      background: #d4ad5c;
+      transition: width .2s ease;
+    }
+
+    .nav-link:hover::after,
+    .nav-link[aria-current="true"]::after {
+      width: 100%;
+    }
+
+    /* Prevent animations from becoming a barrier for motion-sensitive visitors. */
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto !important;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body class="overflow-x-hidden antialiased">
+  <!-- Skip link appears only for keyboard users. -->
+  <a
+    href="#main-content"
+    class="fixed left-4 top-4 z-[100] -translate-y-24 rounded-full bg-gold px-5 py-3 font-bold text-forest transition focus:translate-y-0"
+  >
+    Skip to content
+  </a>
+
+  <!-- =====================================================================
+       SITE HEADER
+       ================================================================== -->
+  <header
+    id="site-header"
+    class="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-forest/95 text-white backdrop-blur-xl transition-shadow"
+  >
+    <div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8">
+      <a href="#home" class="group flex items-center gap-3" aria-label="Revision Revival home">
+        <svg
+          class="h-10 w-10 text-gold transition-transform duration-300 group-hover:rotate-6"
+          viewBox="0 0 64 64"
+          aria-hidden="true"
+        >
+          <path
+            fill="currentColor"
+            d="M32 3l7 14 15-7-7 15 14 7-14 7 7 15-15-7-7 14-7-14-15 7 7-15-14-7 14-7-7-15 15 7z"
+          />
+          <circle cx="32" cy="32" r="9" fill="#103b35" />
+          <circle cx="32" cy="32" r="4" fill="#d8f1eb" />
+        </svg>
+
+        <span class="leading-none">
+          <span class="block font-display text-xl font-bold tracking-wide">
+            Revision Revival
+          </span>
+          <span class="mt-1 block text-[11px] font-bold uppercase tracking-[0.24em] text-mint/70">
+            Australia
+          </span>
+        </span>
+      </a>
+
+      <nav
+        class="hidden items-center gap-7 text-sm font-semibold lg:flex"
+        aria-label="Primary navigation"
+      >
+        <a class="nav-link" href="#about">Our mission</a>
+        <a class="nav-link" href="#structure">The day</a>
+        <a class="nav-link" href="#events">Events</a>
+        <a class="nav-link" href="#register">Register</a>
+      </nav>
+
+      <div class="hidden lg:block">
+        <a
+          href="#register"
+          class="inline-flex items-center gap-2 rounded-full bg-gold px-5 py-3 text-sm font-extrabold text-forest transition hover:-translate-y-0.5 hover:bg-gold-pale"
+        >
+          Melbourne 2026
+          <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+
+      <button
+        id="menu-button"
+        class="grid h-11 w-11 place-items-center rounded-full border border-white/20 lg:hidden"
+        type="button"
+        aria-label="Open navigation"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+      >
+        <svg
+          id="menu-icon"
+          class="h-5 w-5"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          aria-hidden="true"
+        >
+          <path d="M4 7h16M4 12h16M4 17h16" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Collapsible mobile navigation. -->
+    <div
+      id="mobile-menu"
+      class="hidden border-t border-white/10 bg-forest px-5 py-5 lg:hidden"
+    >
+      <nav class="mx-auto grid max-w-7xl gap-1 font-semibold" aria-label="Mobile navigation">
+        <a class="rounded-xl px-4 py-3 hover:bg-white/10" href="#about">
+          Our mission
+        </a>
+        <a class="rounded-xl px-4 py-3 hover:bg-white/10" href="#structure">
+          The day
+        </a>
+        <a class="rounded-xl px-4 py-3 hover:bg-white/10" href="#events">
+          Events
+        </a>
+        <a
+          class="mt-2 rounded-xl bg-gold px-4 py-3 text-center font-extrabold text-forest"
+          href="#register"
+        >
+          Register for Melbourne
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- ===================================================================
+         HERO
+         ================================================================ -->
+    <section
+      id="home"
+      class="relative isolate min-h-[760px] overflow-hidden bg-forest pb-20 pt-36 text-white sm:pt-40"
+    >
+      <div class="hero-grid absolute inset-0 -z-10"></div>
+      <div class="absolute -right-48 top-12 -z-10 h-[36rem] w-[36rem] rounded-full border border-mint/15"></div>
+      <div class="absolute -right-28 top-32 -z-10 h-[25rem] w-[25rem] rounded-full border border-gold/25"></div>
+      <div class="absolute -bottom-24 -left-24 -z-10 h-72 w-72 rounded-full bg-evergreen blur-3xl"></div>
+
+      <div class="mx-auto grid max-w-7xl items-center gap-14 px-5 sm:px-8 lg:grid-cols-[1.12fr_.88fr]">
+        <div class="reveal max-w-3xl">
+          <div class="mb-7 inline-flex items-center gap-3 rounded-full border border-mint/20 bg-white/5 px-4 py-2 text-sm font-bold text-mint backdrop-blur">
+            <span class="h-2 w-2 rounded-full bg-gold"></span>
+            Melbourne gathering · 27 September 2026
+          </div>
+
+          <p class="mb-5 text-sm font-extrabold uppercase tracking-[0.28em] text-gold">
+            One Qur’an. One day. One community.
+          </p>
+
+          <h1 class="font-display text-[clamp(3.8rem,9vw,7.6rem)] font-semibold leading-[.82] tracking-[-0.045em]">
+            Revision,<br />
+            <span class="italic text-mint">revived.</span>
+          </h1>
+
+          <p class="mt-8 max-w-2xl text-lg leading-8 text-mint/80 sm:text-xl">
+            Australian huffadh recite the complete Qur’an from morning to
+            night—supported, corrected and celebrated by the community around them.
+          </p>
+
+          <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+            <a
+              href="#register-reader"
+              class="inline-flex items-center justify-center rounded-full bg-gold px-7 py-4 font-extrabold text-forest transition hover:-translate-y-1 hover:bg-gold-pale"
+            >
+              Register as a reader
+              <span class="ml-2" aria-hidden="true">→</span>
+            </a>
+
+            <a
+              href="#register-listener"
+              class="inline-flex items-center justify-center rounded-full border border-mint/35 px-7 py-4 font-bold text-white transition hover:-translate-y-1 hover:bg-white/10"
+            >
+              Join as a listener
+            </a>
+          </div>
+        </div>
+
+        <!-- Event ticket card -->
+        <aside
+          class="reveal relative mx-auto w-full max-w-md lg:ml-auto"
+          aria-label="Next event summary"
+        >
+          <div class="absolute -inset-3 rotate-3 rounded-[2.4rem] border border-gold/25"></div>
+
+          <div class="relative overflow-hidden rounded-[2rem] bg-mint p-2 text-ink shadow-2xl">
+            <div class="rounded-[1.6rem] border border-forest/10 bg-parchment p-6 sm:p-8">
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <p class="text-xs font-extrabold uppercase tracking-[0.22em] text-evergreen">
+                    Next gathering
+                  </p>
+                  <h2 class="mt-2 font-display text-4xl font-bold leading-none">
+                    Melbourne
+                  </h2>
+                </div>
+
+                <svg
+                  class="brand-star h-16 w-16 text-forest"
+                  viewBox="0 0 64 64"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M32 3l7 14 15-7-7 15 14 7-14 7 7 15-15-7-7 14-7-14-15 7 7-15-14-7 14-7-7-15 15 7z"
+                  />
+                  <circle cx="32" cy="32" r="8" fill="#d4ad5c" />
+                </svg>
+              </div>
+
+              <div class="my-7 border-y border-dashed border-forest/20 py-6">
+                <div class="grid grid-cols-[auto_1fr] gap-x-5 gap-y-5">
+                  <div class="font-display text-5xl font-bold leading-none text-forest">
+                    27
+                  </div>
+
+                  <div>
+                    <p class="font-extrabold">Sunday, September</p>
+                    <p class="mt-1 text-sm text-ink/60">
+                      AFL Grand Final long weekend
+                    </p>
+                  </div>
+
+                  <div class="grid h-11 w-11 place-items-center rounded-full bg-mint font-bold text-forest">
+                    VIC
+                  </div>
+
+                  <div>
+                    <p class="font-extrabold">Preston Mosque</p>
+                    <p class="mt-1 text-sm text-ink/60">
+                      90 Cramer Street, Preston
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <p class="text-xs font-extrabold uppercase tracking-[0.2em] text-ink/50">
+                  Begins in
+                </p>
+
+                <div
+                  id="countdown"
+                  class="mt-3 grid grid-cols-4 gap-2"
+                  aria-label="Countdown to Melbourne event"
+                >
+                  <div class="rounded-xl bg-forest p-3 text-center text-white">
+                    <strong data-days class="block text-xl">--</strong>
+                    <span class="text-[10px] uppercase tracking-wide text-mint/65">
+                      Days
+                    </span>
+                  </div>
+
+                  <div class="rounded-xl bg-forest p-3 text-center text-white">
+                    <strong data-hours class="block text-xl">--</strong>
+                    <span class="text-[10px] uppercase tracking-wide text-mint/65">
+                      Hours
+                    </span>
+                  </div>
+
+                  <div class="rounded-xl bg-forest p-3 text-center text-white">
+                    <strong data-minutes class="block text-xl">--</strong>
+                    <span class="text-[10px] uppercase tracking-wide text-mint/65">
+                      Mins
+                    </span>
+                  </div>
+
+                  <div class="rounded-xl bg-forest p-3 text-center text-white">
+                    <strong data-seconds class="block text-xl">--</strong>
+                    <span class="text-[10px] uppercase tracking-wide text-mint/65">
+                      Secs
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Sydney launch trust ribbon -->
+    <section
+      class="border-b border-forest/10 bg-gold text-forest"
+      aria-label="Sydney launch highlights"
+    >
+      <div class="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-forest/15 px-5 sm:px-8 lg:grid-cols-4">
+        <div class="px-4 py-6 text-center">
+          <strong class="font-display text-3xl">30</strong>
+          <span class="ml-2 text-sm font-extrabold uppercase tracking-wider">
+            Juz recited
+          </span>
+        </div>
+
+        <div class="px-4 py-6 text-center">
+          <strong class="font-display text-3xl">15</strong>
+          <span class="ml-2 text-sm font-extrabold uppercase tracking-wider">
+            Hours together
+          </span>
+        </div>
+
+        <div class="px-4 py-6 text-center">
+          <strong class="font-display text-3xl">1</strong>
+          <span class="ml-2 text-sm font-extrabold uppercase tracking-wider">
+            Complete khatmah
+          </span>
+        </div>
+
+        <div class="px-4 py-6 text-center">
+          <strong class="font-display text-3xl">SYD</strong>
+          <span class="ml-2 text-sm font-extrabold uppercase tracking-wider">
+            Launch city
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         ABOUT THE MOVEMENT
+         ================================================================ -->
+    <section id="about" class="paper-grain py-24 sm:py-32">
+      <div class="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[.8fr_1.2fr] lg:gap-20">
+        <div class="reveal">
+          <p class="text-sm font-extrabold uppercase tracking-[0.25em] text-evergreen">
+            About the movement
+          </p>
+
+          <h2 class="mt-5 font-display text-5xl font-semibold leading-[.95] tracking-tight sm:text-6xl">
+            Hifdh is a gift.<br />
+            <span class="italic text-evergreen">Revision sustains it.</span>
+          </h2>
+        </div>
+
+        <div class="reveal space-y-6 text-lg leading-8 text-ink/75">
+          <p class="text-2xl font-semibold leading-9 text-ink">
+            Revision Revival exists to renew the culture of Qur’an revision and
+            elevate the homegrown huffadh serving Australian communities.
+          </p>
+
+          <p>
+            Memorising the Qur’an is not a finish line. It is a lifelong trust
+            that needs rhythm, companionship and spaces where recitation is taken
+            seriously. Our gatherings place huffadh at the heart of the day while
+            giving the wider community a meaningful role in listening, following
+            and encouraging.
+          </p>
+
+          <p>
+            Our Sydney launch proved the model: a complete khatmah recited across
+            one day, sustained by committed readers, attentive listeners and a
+            community that stayed present from morning until night. Melbourne is
+            the next step in building an enduring national movement—one city,
+            one gathering and one revived relationship with the Qur’an at a time.
+          </p>
+
+          <div class="pt-3">
+            <a
+              href="#events"
+              class="inline-flex items-center gap-3 border-b-2 border-gold pb-1 font-extrabold text-forest"
+            >
+              See the movement grow
+              <span aria-hidden="true">↓</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         EVENT STRUCTURE
+         ================================================================ -->
+    <section id="structure" class="bg-mist py-24 sm:py-32">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="reveal flex max-w-3xl flex-col gap-5">
+          <p class="text-sm font-extrabold uppercase tracking-[0.25em] text-evergreen">
+            The event structure
+          </p>
+
+          <h2 class="font-display text-5xl font-semibold leading-none tracking-tight sm:text-6xl">
+            A full day built around the Qur’an.
+          </h2>
+
+          <p class="max-w-2xl text-lg leading-8 text-ink/65">
+            A focused format that gives readers the conditions to revise well and
+            gives every attendee a genuine part in the khatmah.
+          </p>
+        </div>
+
+        <div class="mt-14 grid gap-5 lg:grid-cols-3">
+          <article class="reveal group rounded-[2rem] bg-forest p-8 text-white shadow-card sm:p-10">
+            <div class="flex items-center justify-between">
+              <span class="font-display text-6xl text-gold">01</span>
+
+              <svg
+                class="h-10 w-10 text-mint"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                aria-hidden="true"
+              >
+                <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H11v17H6.5A2.5 2.5 0 0 0 4 22V5.5ZM20 5.5A2.5 2.5 0 0 0 17.5 3H13v17h4.5A2.5 2.5 0 0 1 20 22V5.5Z" />
+              </svg>
+            </div>
+
+            <h3 class="mt-16 font-display text-3xl font-bold">
+              Recitation, side by side
+            </h3>
+
+            <p class="mt-4 leading-7 text-mint/70">
+              Huffadh carry the complete khatmah in scheduled reading blocks,
+              supported by paired listeners who follow closely and record
+              corrections.
+            </p>
+          </article>
+
+          <article class="reveal group rounded-[2rem] border border-forest/10 bg-parchment p-8 shadow-card sm:p-10">
+            <div class="flex items-center justify-between">
+              <span class="font-display text-6xl text-evergreen/30">02</span>
+
+              <svg
+                class="h-10 w-10 text-evergreen"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                aria-hidden="true"
+              >
+                <path d="M12 14a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" />
+                <path d="M4 21a8 8 0 0 1 16 0M4 10H2m20 0h-2M12 2V0" />
+              </svg>
+            </div>
+
+            <h3 class="mt-16 font-display text-3xl font-bold">
+              Guidance that renews
+            </h3>
+
+            <p class="mt-4 leading-7 text-ink/65">
+              Short reminders and guest speakers reconnect revision to sincerity,
+              discipline and the lifelong responsibility of carrying Allah’s Book.
+            </p>
+          </article>
+
+          <article class="reveal group rounded-[2rem] border border-forest/10 bg-gold p-8 shadow-card sm:p-10">
+            <div class="flex items-center justify-between">
+              <span class="font-display text-6xl text-forest/40">03</span>
+
+              <svg
+                class="h-10 w-10 text-forest"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                aria-hidden="true"
+              >
+                <path d="M4 10h16M6 10a6 6 0 0 1 12 0M3 14h18v6H3zM12 4V2" />
+              </svg>
+            </div>
+
+            <h3 class="mt-16 font-display text-3xl font-bold">
+              Hospitality throughout
+            </h3>
+
+            <p class="mt-4 leading-7 text-forest/75">
+              Meals and refreshments are provided so participants can remain
+              present, build brotherhood and sustain their energy across the day.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         EVENTS HUB
+         ================================================================ -->
+    <section id="events" class="bg-parchment py-24 sm:py-32">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="reveal flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <div>
+            <p class="text-sm font-extrabold uppercase tracking-[0.25em] text-evergreen">
+              Events hub
+            </p>
+
+            <h2 class="mt-4 font-display text-5xl font-semibold leading-none sm:text-6xl">
+              The revival travels.
+            </h2>
+          </div>
+
+          <p class="max-w-lg text-lg leading-8 text-ink/60">
+            From a successful Sydney launch to Melbourne—and, in time,
+            communities across Australia.
+          </p>
+        </div>
+
+        <div class="mt-14 grid gap-7 lg:grid-cols-[1.45fr_.55fr]">
+          <!-- Upcoming event panel -->
+          <article class="reveal relative overflow-hidden rounded-[2.2rem] bg-forest p-7 text-white shadow-soft sm:p-10 lg:p-12">
+            <div class="absolute -right-28 -top-28 h-72 w-72 rounded-full border-[44px] border-mint/5"></div>
+
+            <div class="relative">
+              <div class="flex flex-wrap items-center justify-between gap-4">
+                <span class="rounded-full bg-gold px-4 py-2 text-xs font-extrabold uppercase tracking-[.18em] text-forest">
+                  Upcoming event
+                </span>
+
+                <span class="text-sm font-bold text-mint/60">
+                  Event 02 · Victoria
+                </span>
+              </div>
+
+              <h3 class="mt-10 font-display text-5xl font-semibold leading-none sm:text-7xl">
+                Melbourne<br />
+                <span class="italic text-mint">Gathering</span>
+              </h3>
+
+              <div class="mt-10 grid gap-3 sm:grid-cols-3">
+                <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+                  <p class="text-xs font-bold uppercase tracking-widest text-gold">
+                    Date
+                  </p>
+                  <p class="mt-2 font-bold">Sunday, 27 Sept 2026</p>
+                </div>
+
+                <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+                  <p class="text-xs font-bold uppercase tracking-widest text-gold">
+                    Weekend
+                  </p>
+                  <p class="mt-2 font-bold">AFL Grand Final</p>
+                </div>
+
+                <a
+                  class="rounded-2xl border border-white/10 bg-white/5 p-5 transition hover:bg-white/10"
+                  href="https://www.google.com/maps/search/?api=1&query=90+Cramer+Street+Preston+VIC+3072"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <p class="text-xs font-bold uppercase tracking-widest text-gold">
+                    Venue ↗
+                  </p>
+                  <p class="mt-2 font-bold">Preston Mosque</p>
+                </a>
+              </div>
+
+              <div class="mt-10 border-t border-white/10 pt-8">
+                <p class="mb-4 text-sm font-bold uppercase tracking-[.18em] text-mint/55">
+                  Choose your path
+                </p>
+
+                <div class="flex flex-col gap-3 sm:flex-row">
+                  <a
+                    href="#register-reader"
+                    class="inline-flex flex-1 items-center justify-between rounded-2xl bg-gold px-6 py-5 font-extrabold text-forest transition hover:-translate-y-1 hover:bg-gold-pale"
+                  >
+                    <span>Reader / Hafidh</span>
+                    <span aria-hidden="true">→</span>
+                  </a>
+
+                  <a
+                    href="#register-listener"
+                    class="inline-flex flex-1 items-center justify-between rounded-2xl bg-mint px-6 py-5 font-extrabold text-forest transition hover:-translate-y-1 hover:bg-white"
+                  >
+                    <span>Listener / Volunteer</span>
+                    <span aria-hidden="true">→</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Past milestone panel -->
+          <aside class="reveal rounded-[2.2rem] border border-forest/10 bg-white p-7 shadow-card sm:p-9">
+            <p class="text-xs font-extrabold uppercase tracking-[.2em] text-evergreen">
+              Past milestone
+            </p>
+
+            <div class="mt-7 flex items-center justify-between border-b border-forest/10 pb-6">
+              <div>
+                <p class="font-display text-4xl font-bold">Sydney</p>
+                <p class="mt-1 text-sm font-semibold text-ink/45">
+                  Launch gathering · 2026
+                </p>
+              </div>
+
+              <div class="grid h-14 w-14 place-items-center rounded-full bg-mint font-display text-2xl font-bold text-forest">
+                01
+              </div>
+            </div>
+
+            <dl class="mt-2 divide-y divide-forest/10">
+              <div class="flex items-end justify-between py-5">
+                <dt class="text-sm font-bold text-ink/55">Qur’an completed</dt>
+                <dd class="font-display text-3xl font-bold">30 juz</dd>
+              </div>
+
+              <div class="flex items-end justify-between py-5">
+                <dt class="text-sm font-bold text-ink/55">Program length</dt>
+                <dd class="font-display text-3xl font-bold">15 hrs</dd>
+              </div>
+
+              <div class="flex items-end justify-between py-5">
+                <dt class="text-sm font-bold text-ink/55">Milestone</dt>
+                <dd class="font-display text-3xl font-bold">1 khatmah</dd>
+              </div>
+            </dl>
+
+            <p class="mt-5 rounded-2xl bg-mist p-5 text-sm leading-6 text-ink/65">
+              The launch established a repeatable format for readers, listeners,
+              hospitality and community support.
+            </p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         DUAL-TRACK REGISTRATION
+         ================================================================ -->
+    <section id="register" class="relative overflow-hidden bg-mist py-24 sm:py-32">
+      <div class="absolute left-1/2 top-20 h-96 w-96 -translate-x-1/2 rounded-full bg-gold/15 blur-3xl"></div>
+
+      <div class="relative mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="reveal mx-auto max-w-3xl text-center">
+          <p class="text-sm font-extrabold uppercase tracking-[0.25em] text-evergreen">
+            Melbourne · 27 September 2026
+          </p>
+
+          <h2 class="mt-5 font-display text-5xl font-semibold leading-none sm:text-6xl">
+            There is a place for you in the khatmah.
+          </h2>
+
+          <p class="mx-auto mt-6 max-w-2xl text-lg leading-8 text-ink/60">
+            Choose the role that best matches how you want to contribute.
+            Both tracks are essential to the day.
+          </p>
+        </div>
+
+        <div class="mx-auto mt-14 grid max-w-5xl gap-6 lg:grid-cols-2">
+          <!-- Track A: core readers -->
+          <article
+            id="register-reader"
+            class="reveal flex flex-col rounded-[2.2rem] border border-gold/30 bg-white p-8 shadow-card sm:p-10"
+          >
+            <div class="flex items-start justify-between gap-4">
+              <span class="rounded-full bg-gold-pale px-4 py-2 text-xs font-extrabold uppercase tracking-widest text-forest">
+                Core participant
+              </span>
+
+              <span class="font-display text-5xl font-bold text-gold">A</span>
+            </div>
+
+            <h3 class="mt-9 font-display text-4xl font-bold leading-tight">
+              Register as a<br />
+              Reader / Hafidh
+            </h3>
+
+            <p class="mt-5 leading-7 text-ink/60">
+              For huffadh ready to carry an allocated portion of the khatmah
+              and recite within the event schedule.
+            </p>
+
+            <ul class="mt-7 space-y-4 text-sm font-semibold text-ink/75">
+              <li class="flex gap-3">
+                <span class="text-gold" aria-hidden="true">◆</span>
+                <span>Confident memorisation of your allocated portion</span>
+              </li>
+
+              <li class="flex gap-3">
+                <span class="text-gold" aria-hidden="true">◆</span>
+                <span>Commitment to the confirmed reading time</span>
+              </li>
+
+              <li class="flex gap-3">
+                <span class="text-gold" aria-hidden="true">◆</span>
+                <span>Willingness to prepare and revise beforehand</span>
+              </li>
+            </ul>
+
+            <div class="mt-auto pt-9">
+              <button
+                type="button"
+                data-register="Reader / Hafidh"
+                class="flex w-full items-center justify-between rounded-2xl bg-gold px-6 py-5 text-left font-extrabold text-forest transition hover:-translate-y-1 hover:bg-gold-pale"
+              >
+                <span>Begin reader registration</span>
+                <span aria-hidden="true">↗</span>
+              </button>
+
+              <p class="mt-3 text-center text-xs font-semibold text-ink/40">
+                Melbourne Gathering · Preston Mosque
+              </p>
+            </div>
+          </article>
+
+          <!-- Track B: community support -->
+          <article
+            id="register-listener"
+            class="reveal flex flex-col rounded-[2.2rem] bg-forest p-8 text-white shadow-soft sm:p-10"
+          >
+            <div class="flex items-start justify-between gap-4">
+              <span class="rounded-full bg-white/10 px-4 py-2 text-xs font-extrabold uppercase tracking-widest text-mint">
+                Community support
+              </span>
+
+              <span class="font-display text-5xl font-bold text-mint/35">B</span>
+            </div>
+
+            <h3 class="mt-9 font-display text-4xl font-bold leading-tight">
+              Register as a<br />
+              Listener / Volunteer
+            </h3>
+
+            <p class="mt-5 leading-7 text-mint/65">
+              For community members who will follow recitation, support readers
+              and help sustain the gathering.
+            </p>
+
+            <ul class="mt-7 space-y-4 text-sm font-semibold text-mint/80">
+              <li class="flex gap-3">
+                <span class="text-gold" aria-hidden="true">◆</span>
+                <span>Follow an allocated recitation block attentively</span>
+              </li>
+
+              <li class="flex gap-3">
+                <span class="text-gold" aria-hidden="true">◆</span>
+                <span>Record mistakes respectfully and accurately</span>
+              </li>
+
+              <li class="flex gap-3">
+                <span class="text-gold" aria-hidden="true">◆</span>
+                <span>Volunteer support opportunities available</span>
+              </li>
+            </ul>
+
+            <div class="mt-auto pt-9">
+              <button
+                type="button"
+                data-register="Listener / Volunteer"
+                class="flex w-full items-center justify-between rounded-2xl bg-mint px-6 py-5 text-left font-extrabold text-forest transition hover:-translate-y-1 hover:bg-white"
+              >
+                <span>Join the support team</span>
+                <span aria-hidden="true">↗</span>
+              </button>
+
+              <p class="mt-3 text-center text-xs font-semibold text-mint/40">
+                Melbourne Gathering · Preston Mosque
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =====================================================================
+       INSTITUTIONAL FOOTER
+       ================================================================== -->
+  <footer class="bg-[#092a26] text-white">
+    <div class="mx-auto grid max-w-7xl gap-12 px-5 py-16 sm:px-8 lg:grid-cols-[1fr_.8fr] lg:py-20">
+      <div>
+        <a
+          href="#home"
+          class="inline-flex items-center gap-4"
+          aria-label="Revision Revival home"
+        >
+          <svg
+            class="h-14 w-14 text-gold"
+            viewBox="0 0 64 64"
+            aria-hidden="true"
+          >
+            <path
+              fill="currentColor"
+              d="M32 3l7 14 15-7-7 15 14 7-14 7 7 15-15-7-7 14-7-14-15 7 7-15-14-7 14-7-7-15 15 7z"
+            />
+            <circle cx="32" cy="32" r="9" fill="#092a26" />
+            <circle cx="32" cy="32" r="4" fill="#d8f1eb" />
+          </svg>
+
+          <span class="font-display text-3xl font-bold">
+            Revision Revival
+          </span>
+        </a>
+
+        <p class="mt-6 max-w-lg text-lg leading-8 text-mint/60">
+          Reviving Qur’an revision and elevating Australia’s homegrown
+          huffadh—one gathering at a time.
+        </p>
+
+        <a
+          href="https://www.instagram.com/revisionrevival/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-7 inline-flex items-center gap-3 rounded-full border border-white/15 px-5 py-3 font-bold transition hover:border-gold hover:text-gold"
+          aria-label="Follow Revision Revival on Instagram"
+        >
+          <svg
+            class="h-5 w-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            aria-hidden="true"
+          >
+            <rect x="3" y="3" width="18" height="18" rx="5" />
+            <circle cx="12" cy="12" r="4" />
+            <circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none" />
+          </svg>
+
+          @revisionrevival
+        </a>
+      </div>
+
+      <div class="lg:justify-self-end lg:max-w-md">
+        <p class="text-sm font-extrabold uppercase tracking-[0.22em] text-gold">
+          Stay connected
+        </p>
+
+        <h2 class="mt-3 font-display text-3xl font-bold">
+          News from the next gathering.
+        </h2>
+
+        <form id="newsletter-form" class="mt-6" novalidate>
+          <label for="newsletter-email" class="sr-only">
+            Email address
+          </label>
+
+          <div class="flex flex-col gap-3 sm:flex-row">
+            <input
+              id="newsletter-email"
+              name="email"
+              type="email"
+              required
+              autocomplete="email"
+              placeholder="Your email address"
+              class="min-h-14 w-full rounded-full border border-white/15 bg-white/5 px-5 text-base text-white placeholder:text-white/35 focus:border-gold focus:outline-none"
+            />
+
+            <button
+              type="submit"
+              class="min-h-14 shrink-0 rounded-full bg-gold px-6 font-extrabold text-forest transition hover:bg-gold-pale"
+            >
+              Join updates
+            </button>
+          </div>
+
+          <p
+            id="newsletter-message"
+            class="mt-3 min-h-6 text-sm text-mint/65"
+            aria-live="polite"
+          ></p>
+        </form>
+      </div>
+    </div>
+
+    <div class="border-t border-white/10">
+      <div class="mx-auto flex max-w-7xl flex-col gap-3 px-5 py-6 text-sm text-mint/45 sm:flex-row sm:items-center sm:justify-between sm:px-8">
+        <p>
+          © <span id="current-year">2026</span> Revision Revival.
+          All rights reserved.
+        </p>
+
+        <p>Built to serve the Qur’an and its people.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Registration handoff dialog -->
+  <div
+    id="registration-modal"
+    class="fixed inset-0 z-[80] hidden items-center justify-center bg-ink/80 p-5 backdrop-blur-sm"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modal-title"
+  >
+    <div class="w-full max-w-lg rounded-[2rem] bg-parchment p-7 shadow-2xl sm:p-9">
+      <div class="flex items-start justify-between gap-5">
+        <div>
+          <p class="text-xs font-extrabold uppercase tracking-[.2em] text-evergreen">
+            Melbourne · 27 September 2026
+          </p>
+
+          <h2 id="modal-title" class="mt-3 font-display text-4xl font-bold">
+            Registration
+          </h2>
+        </div>
+
+        <button
+          id="modal-close"
+          type="button"
+          class="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-forest/15 text-2xl text-forest hover:bg-mist"
+          aria-label="Close registration dialog"
+        >
+          ×
+        </button>
+      </div>
+
+      <p id="modal-copy" class="mt-5 leading-7 text-ink/65"></p>
+
+      <div class="mt-7 rounded-2xl bg-mint p-5 text-sm leading-6 text-forest">
+        Registration links are released through the official Revision Revival
+        Instagram page. Open the profile below and select the Melbourne
+        registration link for your chosen track.
+      </div>
+
+      <a
+        href="https://www.instagram.com/revisionrevival/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mt-6 flex w-full items-center justify-between rounded-2xl bg-forest px-6 py-5 font-extrabold text-white transition hover:-translate-y-1 hover:bg-evergreen"
+      >
+        <span>Continue to @revisionrevival</span>
+        <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    /* =====================================================================
+       REVISION REVIVAL — SMALL, DEPENDENCY-FREE INTERACTIONS
+       ================================================================== */
+
+    // Mobile navigation.
+    const menuButton = document.getElementById('menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuButton.addEventListener('click', () => {
+      const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+
+      menuButton.setAttribute('aria-expanded', String(!isOpen));
+      menuButton.setAttribute(
+        'aria-label',
+        isOpen ? 'Open navigation' : 'Close navigation'
+      );
+
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    mobileMenu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuButton.setAttribute('aria-expanded', 'false');
+        menuButton.setAttribute('aria-label', 'Open navigation');
+      });
+    });
+
+    // Add subtle elevation once the header separates from the page top.
+    const siteHeader = document.getElementById('site-header');
+
+    window.addEventListener(
+      'scroll',
+      () => {
+        siteHeader.classList.toggle('shadow-xl', window.scrollY > 24);
+      },
+      { passive: true }
+    );
+
+    // Countdown uses Melbourne's September UTC+10 offset.
+    const eventTime = new Date('2026-09-27T07:00:00+10:00').getTime();
+    const countdown = document.getElementById('countdown');
+
+    function updateCountdown() {
+      const remaining = Math.max(0, eventTime - Date.now());
+
+      const values = {
+        days: Math.floor(remaining / 86400000),
+        hours: Math.floor((remaining % 86400000) / 3600000),
+        minutes: Math.floor((remaining % 3600000) / 60000),
+        seconds: Math.floor((remaining % 60000) / 1000)
+      };
+
+      Object.entries(values).forEach(([unit, value]) => {
+        countdown.querySelector(`[data-${unit}]`).textContent =
+          String(value).padStart(2, '0');
+      });
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // Reveal elements as they enter the viewport.
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+
+    document
+      .querySelectorAll('.reveal')
+      .forEach((element) => observer.observe(element));
+
+    // Registration dialog.
+    const modal = document.getElementById('registration-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalCopy = document.getElementById('modal-copy');
+    const modalClose = document.getElementById('modal-close');
+
+    let lastTrigger = null;
+
+    function openModal(track, trigger) {
+      lastTrigger = trigger;
+      modalTitle.textContent = `${track} registration`;
+
+      modalCopy.textContent = track.startsWith('Reader')
+        ? 'You are registering for the core reader track. Please be ready to nominate the portions you can recite confidently and commit to your confirmed time.'
+        : 'You are registering for the community support track. You can join as an attentive listener, an event volunteer, or both.';
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.classList.add('overflow-hidden');
+      modalClose.focus();
+    }
+
+    function closeModal() {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.classList.remove('overflow-hidden');
+      lastTrigger?.focus();
+    }
+
+    document.querySelectorAll('[data-register]').forEach((button) => {
+      button.addEventListener('click', () => {
+        openModal(button.dataset.register, button);
+      });
+    });
+
+    modalClose.addEventListener('click', closeModal);
+
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) {
+        closeModal();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (
+        event.key === 'Escape' &&
+        !modal.classList.contains('hidden')
+      ) {
+        closeModal();
+      }
+    });
+
+    // Static-site newsletter capture.
+    const newsletterForm = document.getElementById('newsletter-form');
+    const newsletterEmail = document.getElementById('newsletter-email');
+    const newsletterMessage = document.getElementById('newsletter-message');
+
+    newsletterForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      if (!newsletterEmail.checkValidity()) {
+        newsletterMessage.textContent =
+          'Please enter a valid email address.';
+        newsletterEmail.focus();
+        return;
+      }
+
+      localStorage.setItem(
+        'revisionRevivalNewsletterInterest',
+        newsletterEmail.value.trim()
+      );
+
+      newsletterMessage.textContent =
+        'Interest saved on this device. Follow @revisionrevival for confirmed event updates.';
+
+      newsletterForm.reset();
+    });
+
+    document.getElementById('current-year').textContent =
+      new Date().getFullYear();
+  </script>
+</body>
+</html>
